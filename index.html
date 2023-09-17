@@ -1,42 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Identificador de Amostras de Laboratório</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="style.css">
-<title>Identificador de Amostras de Laboratório</title>
 </head>
 <body>
 <div class="container">
-<h1>Identificador de Amostras de Laboratório</h1>
-<form id="sample-form">
-<label for="ponto">Ponto:</label>
-<input type="text" id="ponto" name="ponto" required>
-<label for="tratamento">Tipo de Tratamento:</label>
-<input type="text" id="tratamento" name="tratamento" required>
-<label for="massa">Massa:</label>
-<input type="number" id="massa" name="massa" step="0.01" required>
-<label for="fragmentos">Fragmentos:</label>
-<input type="number" id="fragmentos" name="fragmentos" required>
-<label for="fibras">Fibras:</label>
-<input type="number" id="fibras" name="fibras" required>
-<button type="submit">Submeter</button>
-</form>
-<div id="result"></div>
-<script src="script.js"></script>
-<!-- ... (restante do código HTML) ... -->
-
-<div id="actions">
-    <button id="get-samples-btn">Obter Amostras</button>
-    <button id="export-samples-btn">Exportar Amostras</button>
-    <button id="plot-samples-btn">Plotar Amostras</button>
-</div>
-
-<div id="samples-result"></div>
-
+    <h1>Identificador de Amostras de Laboratório</h1>
+    <form id="sample-form">
+        <label for="ponto">Ponto:</label>
+        <input type="text" id="ponto" name="ponto" required>
+        <label for="tratamento">Tipo de Tratamento:</label>
+        <input type="text" id="tratamento" name="tratamento" required>
+        <label for="massa">Massa:</label>
+        <input type="number" id="massa" name="massa" step="0.01" required>
+        <label for="fragmentos">Fragmentos:</label>
+        <input type="number" id="fragmentos" name="fragmentos" required>
+        <label for="fibras">Fibras:</label>
+        <input type="number" id="fibras" name="fibras" required>
+        <button type="submit">Submeter</button>
+    </form>
+    <div id="result"></div>
+    <div id="actions">
+        <button id="get-samples-btn">Obter Amostras</button>
+        <button id="export-samples-btn">Exportar Amostras</button>
+        <button id="plot-samples-btn">Plotar Amostras</button>
+    </div>
+    <div id="samples-result"></div>
+    <script src="script.js"></script>
 </div>
 </body>
 </html>
