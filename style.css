@@ -1,13 +1,23 @@
+:root {
+    --main-bg-color: #f0f0f0;
+    --main-text-color: #333;
+    --container-bg-color: #fff;
+    --input-border-color: #ccc;
+    --button-bg-color: #28a745;
+    --button-bg-color-hover: #218838;
+    --button-text-color: #fff;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
 }
 
 .container {
     max-width: 500px;
     margin: 0 auto;
-    background-color: #fff;
+    background-color: var(--container-bg-color);
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -21,19 +31,19 @@ input {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--input-border-color);
     border-radius: 4px;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: var(--button-bg-color-hover);
 }
