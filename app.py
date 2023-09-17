@@ -1,20 +1,9 @@
-import subprocess
-
-def install_libraries():
-    libraries = ["flask", "pandas", "matplotlib"]
-    
-    for lib in libraries:
-        subprocess.check_call(["python3", "-m", "pip", "install", lib])
-
-if __name__ == "__main__":
-    install_libraries()
-
 from flask import Flask, render_template, request, jsonify, send_file
 import pandas as pd
 import sqlite3
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
-
 
 # Inicialização do banco de dados
 def init_db():
@@ -52,7 +41,7 @@ def export_samples():
     conn = sqlite3.connect('samples.db')
     df = pd.read_sql_query("SELECT * FROM samples", conn)
     conn.close()
-    csv_file = '/path/to/directory/samples.csv'  # Substitua pelo caminho onde você deseja salvar o arquivo CSV
+    csv_file = 'samples.csv'  # Você pode especificar um caminho diferente se desejar
     df.to_csv(csv_file, index=False)
     return send_file(csv_file, as_attachment=True)
 
@@ -76,15 +65,9 @@ def plot_samples():
     plt.title('Fibras vs ID')
 
     plt.tight_layout()
-    plot_file = '/path/to/directory/samples_plot.png'  # Substitua pelo caminho onde você deseja salvar o gráfico
+    plot_file = 'samples_plot.png'  # Você pode especificar um caminho diferente se desejar
     plt.savefig(plot_file)
-    app.route('/plot_samples', methods=['GET'])
-@def plot_samples():
-    conn = sqlite3.connect('samples.db')
-    df = pd.read_sql_query("SELECT * FROM samples", conn)
-    conn.close()
-
-    return df.to_json(orient='records')
+    
     return send_file(plot_file, as_attachment=True)
 
 if __name__ == '__main__':
