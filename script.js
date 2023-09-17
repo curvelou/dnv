@@ -41,7 +41,59 @@ document.getElementById('get-samples-btn').addEventListener('click', function() 
 document.getElementById('export-samples-btn').addEventListener('click', function() {
     window.location.href = '/export_samples';
 });
-
 document.getElementById('plot-samples-btn').addEventListener('click', function() {
-    window.location.href = '/plot_samples';
+    fetch('/plot_samples')
+    .then(response => response.json())
+    .then(data => {
+        var ids = data.map(d => d.id);
+        var massas = data.map(d => d.massa);
+        var fragmentos = data.map(d => d.fragmentos);
+        var fibras = data.map(d => d.fibras);
+
+        var trace1 = {
+            x: ids,
+            y: massas,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Massa',
+            marker: { color: 'blue' }
+        };
+
+        var trace2 = {
+            x: ids,
+            y: fragmentos,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Fragmentos',
+            marker: { color: 'green' }
+        };
+
+        var trace3 = {
+            x: ids,
+            y: fibras,
+            mode: 'markers',
+            type: 'scatter',
+            name: 'Fibras',
+            marker: { color: 'red' }
+        };
+
+        var layout = {
+            title: 'Análise de Amostras',
+            xaxis: {
+                title: 'ID'
+            },
+            yaxis: {
+                title: 'Valor'
+            }
+        };
+
+        var config = {
+            responsive: true
+        };
+
+        Plotly.newPlot('samples-result', [trace1, trace2, trace3], layout, config);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 });
