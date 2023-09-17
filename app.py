@@ -1,3 +1,15 @@
+import subprocess
+
+def install_libraries():
+    libraries = ["flask", "pandas", "matplotlib"]
+    
+    for lib in libraries:
+        subprocess.check_call(["python3", "-m", "pip", "install", lib])
+
+if __name__ == "__main__":
+    install_libraries()
+
+
 from flask import Flask, render_template, request, jsonify, send_file
 from matplotlib import pyplot as plt
 import pandas as pd
