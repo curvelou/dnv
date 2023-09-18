@@ -2,8 +2,12 @@ from flask import Flask, render_template, request, jsonify, send_file
 import pandas as pd
 import sqlite3
 import matplotlib.pyplot as plt
+import logging
 
 app = Flask(__name__)
+
+# Configurar logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Inicialização do banco de dados
 def init_db():
@@ -20,11 +24,13 @@ def home():
 @app.route('/add_sample', methods=['POST'])
 def add_sample():
     data = request.get_json()
+    app.logger.info('Dados recebidos: %s', data)
     conn = sqlite3.connect('samples.db')
     cursor = conn.cursor()
     cursor.execute("INSERT INTO samples (ponto, tratamento, massa, fragmentos, fibras) VALUES (?, ?, ?, ?, ?)", (data['ponto'], data['tratamento'], data['massa'], data['fragmentos'], data['fibras']))
     conn.commit()
     conn.close()
+    app.logger.info('Amostra adicionada com sucesso')
     return jsonify(message='Amostra adicionada com sucesso!')
 
 @app.route('/get_samples', methods=['GET'])
